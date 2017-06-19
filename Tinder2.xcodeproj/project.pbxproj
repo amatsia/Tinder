@@ -7,40 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044BB45C1EF08C3800297113 /* GetBoost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044BB45B1EF08C3800297113 /* GetBoost.swift */; };
+		048727321EE368CF00E94EF3 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048727311EE368CF00E94EF3 /* Global.swift */; };
 		049067B31ECDBEF200421E82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 049067B11ECDBEF200421E82 /* LaunchScreen.storyboard */; };
 		049067C41ECDC09C00421E82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067BD1ECDC09C00421E82 /* AppDelegate.swift */; };
-		049067C51ECDC09C00421E82 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067BE1ECDC09C00421E82 /* MainViewController.swift */; };
+		049067C51ECDC09C00421E82 /* TinderOpeningScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067BE1ECDC09C00421E82 /* TinderOpeningScreen.swift */; };
 		049067C61ECDC09C00421E82 /* PhoneLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067BF1ECDC09C00421E82 /* PhoneLogin.swift */; };
-		049067C71ECDC09C00421E82 /* FacebookLoginPopupOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067C01ECDC09C00421E82 /* FacebookLoginPopupOld.swift */; };
 		049067C81ECDC09C00421E82 /* TermsOfUse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067C11ECDC09C00421E82 /* TermsOfUse.swift */; };
 		049067C91ECDC09C00421E82 /* PrivacyPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067C21ECDC09C00421E82 /* PrivacyPolicy.swift */; };
-		049067CA1ECDC09C00421E82 /* FacebookPrivacy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067C31ECDC09C00421E82 /* FacebookPrivacy.swift */; };
-		049067CF1ECDC0B700421E82 /* MainScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067CB1ECDC0B700421E82 /* MainScrollView.swift */; };
+		049067CF1ECDC0B700421E82 /* TinderMainScrollVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067CB1ECDC0B700421E82 /* TinderMainScrollVIew.swift */; };
 		049067D01ECDC0B700421E82 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067CC1ECDC0B700421E82 /* Settings.swift */; };
-		049067D11ECDC0B700421E82 /* TinderPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067CD1ECDC0B700421E82 /* TinderPlus.swift */; };
-		049067D21ECDC0B700421E82 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049067CE1ECDC0B700421E82 /* ScrollView.swift */; };
 		04CFACE61ED1BB30009A6766 /* GetTinderPlus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CFACE51ED1BB30009A6766 /* GetTinderPlus.swift */; };
-		04CFACE81ED2D013009A6766 /* Assets 10-49-34-168.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CFACE71ED2D013009A6766 /* Assets 10-49-34-168.xcassets */; };
+		04CFACE81ED2D013009A6766 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04CFACE71ED2D013009A6766 /* Assets.xcassets */; };
+		04F4EDA91EF34EE3002470B9 /* Stamps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F4EDA81EF34EE3002470B9 /* Stamps.swift */; };
 		F527202C226EED8EBD622BE7 /* Pods_Tinder2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6465100197CC6997D75FC781 /* Pods_Tinder2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		044BB45B1EF08C3800297113 /* GetBoost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetBoost.swift; sourceTree = "<group>"; };
+		048727311EE368CF00E94EF3 /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		049067A51ECDBEF100421E82 /* Tinder2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tinder2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049067B21ECDBEF200421E82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		049067B41ECDBEF200421E82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		049067BD1ECDC09C00421E82 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		049067BE1ECDC09C00421E82 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		049067BE1ECDC09C00421E82 /* TinderOpeningScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinderOpeningScreen.swift; sourceTree = "<group>"; };
 		049067BF1ECDC09C00421E82 /* PhoneLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneLogin.swift; sourceTree = "<group>"; };
-		049067C01ECDC09C00421E82 /* FacebookLoginPopupOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookLoginPopupOld.swift; sourceTree = "<group>"; };
 		049067C11ECDC09C00421E82 /* TermsOfUse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsOfUse.swift; sourceTree = "<group>"; };
 		049067C21ECDC09C00421E82 /* PrivacyPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicy.swift; sourceTree = "<group>"; };
-		049067C31ECDC09C00421E82 /* FacebookPrivacy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPrivacy.swift; sourceTree = "<group>"; };
-		049067CB1ECDC0B700421E82 /* MainScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScrollView.swift; sourceTree = "<group>"; };
+		049067CB1ECDC0B700421E82 /* TinderMainScrollVIew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinderMainScrollVIew.swift; sourceTree = "<group>"; };
 		049067CC1ECDC0B700421E82 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		049067CD1ECDC0B700421E82 /* TinderPlus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinderPlus.swift; sourceTree = "<group>"; };
-		049067CE1ECDC0B700421E82 /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		04CFACE51ED1BB30009A6766 /* GetTinderPlus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetTinderPlus.swift; sourceTree = "<group>"; };
-		04CFACE71ED2D013009A6766 /* Assets 10-49-34-168.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Assets 10-49-34-168.xcassets"; path = "Tinder2/Assets 10-49-34-168.xcassets"; sourceTree = "<group>"; };
+		04CFACE71ED2D013009A6766 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Tinder2/Assets.xcassets; sourceTree = "<group>"; };
+		04D261891EF28C510015635B /* Tinder2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tinder2.entitlements; sourceTree = "<group>"; };
+		04F4EDA81EF34EE3002470B9 /* Stamps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stamps.swift; sourceTree = "<group>"; };
 		3A9CBF8DAE1DFB32B6C47C52 /* Pods-Tinder2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tinder2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tinder2/Pods-Tinder2.debug.xcconfig"; sourceTree = "<group>"; };
 		5A1942F3CD91E64DAC57CCF0 /* Pods-Tinder2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tinder2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tinder2/Pods-Tinder2.release.xcconfig"; sourceTree = "<group>"; };
 		6465100197CC6997D75FC781 /* Pods_Tinder2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tinder2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				049067A71ECDBEF100421E82 /* Tinder2 */,
-				04CFACE71ED2D013009A6766 /* Assets 10-49-34-168.xcassets */,
+				04CFACE71ED2D013009A6766 /* Assets.xcassets */,
 				049067A61ECDBEF100421E82 /* Products */,
 				5F9E622411AB364E50045957 /* Pods */,
 				77F5D2C2BFFBC0ABDB6E6D94 /* Frameworks */,
@@ -80,38 +79,38 @@
 		049067A71ECDBEF100421E82 /* Tinder2 */ = {
 			isa = PBXGroup;
 			children = (
+				04D261891EF28C510015635B /* Tinder2.entitlements */,
 				049067BD1ECDC09C00421E82 /* AppDelegate.swift */,
-				049067BB1ECDC02D00421E82 /* Before login */,
-				049067BC1ECDC03F00421E82 /* After login */,
+				049067BB1ECDC02D00421E82 /* Before FB login */,
+				049067BC1ECDC03F00421E82 /* After FB login */,
 				049067B11ECDBEF200421E82 /* LaunchScreen.storyboard */,
 				049067B41ECDBEF200421E82 /* Info.plist */,
 			);
 			path = Tinder2;
 			sourceTree = "<group>";
 		};
-		049067BB1ECDC02D00421E82 /* Before login */ = {
+		049067BB1ECDC02D00421E82 /* Before FB login */ = {
 			isa = PBXGroup;
 			children = (
-				049067BE1ECDC09C00421E82 /* MainViewController.swift */,
+				049067BE1ECDC09C00421E82 /* TinderOpeningScreen.swift */,
 				049067BF1ECDC09C00421E82 /* PhoneLogin.swift */,
-				049067C01ECDC09C00421E82 /* FacebookLoginPopupOld.swift */,
 				049067C11ECDC09C00421E82 /* TermsOfUse.swift */,
 				049067C21ECDC09C00421E82 /* PrivacyPolicy.swift */,
-				049067C31ECDC09C00421E82 /* FacebookPrivacy.swift */,
 			);
-			name = "Before login";
+			name = "Before FB login";
 			sourceTree = "<group>";
 		};
-		049067BC1ECDC03F00421E82 /* After login */ = {
+		049067BC1ECDC03F00421E82 /* After FB login */ = {
 			isa = PBXGroup;
 			children = (
-				049067CB1ECDC0B700421E82 /* MainScrollView.swift */,
+				049067CB1ECDC0B700421E82 /* TinderMainScrollVIew.swift */,
 				049067CC1ECDC0B700421E82 /* Settings.swift */,
-				049067CD1ECDC0B700421E82 /* TinderPlus.swift */,
-				049067CE1ECDC0B700421E82 /* ScrollView.swift */,
 				04CFACE51ED1BB30009A6766 /* GetTinderPlus.swift */,
+				048727311EE368CF00E94EF3 /* Global.swift */,
+				044BB45B1EF08C3800297113 /* GetBoost.swift */,
+				04F4EDA81EF34EE3002470B9 /* Stamps.swift */,
 			);
-			name = "After login";
+			name = "After FB login";
 			sourceTree = "<group>";
 		};
 		5F9E622411AB364E50045957 /* Pods */ = {
@@ -169,6 +168,11 @@
 						DevelopmentTeam = FY3Q3UN9CD;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -195,7 +199,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04CFACE81ED2D013009A6766 /* Assets 10-49-34-168.xcassets in Resources */,
+				04CFACE81ED2D013009A6766 /* Assets.xcassets in Resources */,
 				049067B31ECDBEF200421E82 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,17 +259,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				049067CA1ECDC09C00421E82 /* FacebookPrivacy.swift in Sources */,
-				049067D21ECDC0B700421E82 /* ScrollView.swift in Sources */,
-				049067D11ECDC0B700421E82 /* TinderPlus.swift in Sources */,
-				049067C71ECDC09C00421E82 /* FacebookLoginPopupOld.swift in Sources */,
 				04CFACE61ED1BB30009A6766 /* GetTinderPlus.swift in Sources */,
+				048727321EE368CF00E94EF3 /* Global.swift in Sources */,
+				044BB45C1EF08C3800297113 /* GetBoost.swift in Sources */,
 				049067C41ECDC09C00421E82 /* AppDelegate.swift in Sources */,
+				04F4EDA91EF34EE3002470B9 /* Stamps.swift in Sources */,
 				049067C81ECDC09C00421E82 /* TermsOfUse.swift in Sources */,
-				049067C51ECDC09C00421E82 /* MainViewController.swift in Sources */,
+				049067C51ECDC09C00421E82 /* TinderOpeningScreen.swift in Sources */,
 				049067C91ECDC09C00421E82 /* PrivacyPolicy.swift in Sources */,
 				049067D01ECDC0B700421E82 /* Settings.swift in Sources */,
-				049067CF1ECDC0B700421E82 /* MainScrollView.swift in Sources */,
+				049067CF1ECDC0B700421E82 /* TinderMainScrollVIew.swift in Sources */,
 				049067C61ECDC09C00421E82 /* PhoneLogin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Tinder2/Tinder2.entitlements;
 				DEVELOPMENT_TEAM = FY3Q3UN9CD;
 				INFOPLIST_FILE = Tinder2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -399,6 +403,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Tinder2/Tinder2.entitlements;
 				DEVELOPMENT_TEAM = FY3Q3UN9CD;
 				INFOPLIST_FILE = Tinder2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -19,13 +19,13 @@ class PhoneLoginViewController: UIViewController, UIGestureRecognizerDelegate {
         
         // Instructions (Red)
         let instructionsTextLabel = UILabel()
+        instructionsTextLabel.translatesAutoresizingMaskIntoConstraints = false
         let text1 = "הזן את מספר הטלפון"
         let text2 = "הסלולרי שלך"
         let redText = text1 + "\n" + text2
         instructionsTextLabel.text = redText
         instructionsTextLabel.font = instructionsTextLabel.font.withSize(25)
         instructionsTextLabel.textColor = .red
-        instructionsTextLabel.frame = CGRect(x: 0, y: 60, width: screenSize.width, height: 60)
         instructionsTextLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         instructionsTextLabel.numberOfLines = 0
         instructionsTextLabel.textAlignment = .center
@@ -70,35 +70,47 @@ class PhoneLoginViewController: UIViewController, UIGestureRecognizerDelegate {
         self.view.addSubview(explanationsTextLabel)
         
         // Next button - need to change rect to constraints!!
-        let nextButton = UIButton(frame: CGRect(x: 50, y: (screenSize.height*0.5), width: screenSize.width-100, height: 50))
+        let nextButton = UIButton()
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
         nextButton.backgroundColor = .lightGray
         nextButton.setTitleColor(UIColor.white, for: .normal)
         nextButton.setTitle("הבא",for: .normal)
         nextButton.addTarget(self, action: #selector(self.nextButtonPressed), for: .touchUpInside)
         self.view.addSubview(nextButton)
         
-        // Back button - need to check how it works on Iphone!!
-        let backButton = UIButton(frame: CGRect(x: (screenSize.width/2)-25, y: (screenSize.height*0.6)+50, width: 50, height: 50))
-        backButton.backgroundColor = UIColor.blue
-        backButton.setTitleColor(UIColor.white, for: .normal)
-        backButton.setTitle("Back",for: .normal)
-        backButton.layer.cornerRadius = 25
-        backButton.addTarget(self, action: #selector(self.backButtonPressed), for: .touchUpInside)
-        self.view.addSubview(backButton)
-        
-        // constarints
+        // constraints
         let dict = Dictionary(dictionaryLiteral: ("code", countryCodeInputTextField),("number",numberInputTextField),("explanation",explanationsTextLabel))
-        let phoneInputhorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-50-[code(70)]-10-[number]-50-|", options: NSLayoutFormatOptions(), metrics: nil, views: dict)
-        let codeVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-160-[code(40)]|", options: NSLayoutFormatOptions(), metrics: nil, views: dict)
-        let numberVerticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|-160-[number(40)]|", options: NSLayoutFormatOptions(), metrics: nil, views: dict)
-        
+        let instractionHorizontalConstraints = NSLayoutConstraint(item: instructionsTextLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+        let instractionTopConstraints = NSLayoutConstraint(item: instructionsTextLabel, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 100)
+        let instractionWidthConstraints = NSLayoutConstraint(item: instructionsTextLabel, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: -80)
+        let instractionHeightConstraints = NSLayoutConstraint(item: instructionsTextLabel, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 80)
+        let phoneInputHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-50-[code(70)]-10-[number]-50-|", options: NSLayoutFormatOptions(), metrics: nil, views: dict)
+        let codeTopConstraints = NSLayoutConstraint(item: countryCodeInputTextField, attribute: .top, relatedBy: .equal, toItem: instructionsTextLabel, attribute: .bottom, multiplier: 1, constant: 40)
+        let codeHeightConstraints = NSLayoutConstraint(item: countryCodeInputTextField, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        let numberTopConstraints = NSLayoutConstraint(item: numberInputTextField, attribute: .top, relatedBy: .equal, toItem: countryCodeInputTextField, attribute: .top, multiplier: 1, constant: 0)
+        let numberHeightConstraints = NSLayoutConstraint(item: numberInputTextField, attribute: .height, relatedBy: .equal, toItem: countryCodeInputTextField, attribute: .height, multiplier: 1, constant: 0)
         self.view.addConstraint(NSLayoutConstraint(item: explanationsTextLabel, attribute: .top, relatedBy: .equal, toItem: numberInputTextField, attribute: .bottom, multiplier: 1, constant: 30))
-        
         let explanationHorizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[explanation]-20-|", options: NSLayoutFormatOptions(), metrics: nil, views: dict)
-        self.view.addConstraints(phoneInputhorizontalConstraints)
-        self.view.addConstraints(codeVerticalConstraints)
-        self.view.addConstraints(numberVerticalConstraints)
+        let nextTopConstraint = NSLayoutConstraint(item: nextButton, attribute: .top, relatedBy: .equal, toItem: explanationsTextLabel, attribute: .bottom, multiplier: 1, constant: 20)
+        let nextCenterXConstraint = NSLayoutConstraint(item: nextButton, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+        let nextWidthConstraint = NSLayoutConstraint(item: nextButton, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: -100)
+        let nextHeightConstraint = NSLayoutConstraint(item: nextButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
+        self.view.addConstraints([instractionHorizontalConstraints,instractionTopConstraints,instractionWidthConstraints,instractionHeightConstraints,codeTopConstraints,codeHeightConstraints,numberTopConstraints,numberHeightConstraints,nextTopConstraint,nextCenterXConstraint,nextWidthConstraint,nextHeightConstraint])
+        self.view.addConstraints(phoneInputHorizontalConstraints)
         self.view.addConstraints(explanationHorizontalConstraints)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 65))
+        view.addSubview(navBar)
+        navBar.barTintColor = .white
+        let navItem = UINavigationItem(title: "התחבר אל Tinder")
+        navBar.setItems([navItem], animated: false)
+        navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.red]
+        let barButton = UIBarButtonItem(title: "הקודם", style: .plain, target: self, action: #selector(backButtonPressed))
+        barButton.tintColor = .red
+        navItem.rightBarButtonItem = barButton
     }
     
     func handleTap(gesture: UITapGestureRecognizer) {
@@ -117,7 +129,7 @@ class PhoneLoginViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func backButtonPressed() {
-        print("Back button pressed")
+        print("Phone login - Back button pressed")
         let mainVC = ScrollViewController()
         present(mainVC, animated: false, completion: nil)
     }

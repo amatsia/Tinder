@@ -18,6 +18,11 @@ class GetTinderPlus : UIViewController, UIScrollViewDelegate, UIPageViewControll
     let choose1Month = UIButton()
     let choose6Month = UIButton()
     let choose12Month = UIButton()
+    var title1 = NSMutableAttributedString(string: "")
+    var title2 = NSMutableAttributedString(string: "")
+    var title3 = NSMutableAttributedString(string: "")
+    var upperLabelView6 = UIView()
+    var upperLabelView12 = UIView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,22 +113,28 @@ class GetTinderPlus : UIViewController, UIScrollViewDelegate, UIPageViewControll
         pageControl.addTarget(self, action: #selector(changePage), for: UIControlEvents.valueChanged)
         
         // set 3 frames for tinder plus buying options
-        setChoosingButtons(sender: choose1Month, backgroundColor: .lightGray, titleColor: .darkGray, title: "1 חודש")
+        title1 = setAttributedText(number: "1\n", month: "חודש\n", costs: "79.90 ₪/חודש") as! NSMutableAttributedString
+        setChoosingButtons(sender: choose1Month, backgroundColor: .lightGray, titleColor: .darkGray, title: title1)
         choose1Month.addTarget(self, action: #selector(choose1MonthPressed), for: .touchUpInside)
         getTinderPlusView.addSubview(choose1Month)
-        setChoosingButtons(sender: choose6Month, backgroundColor: .lightGray, titleColor: .darkGray, title: "6 חודשים")
+        title2 = setAttributedText(number: "6\n", month: "חודשים\n", costs: "49.98 ₪/חודש") as! NSMutableAttributedString
+        setChoosingButtons(sender: choose6Month, backgroundColor: .lightGray, titleColor: .darkGray, title: title2)
         choose6Month.addTarget(self, action: #selector(choose6MonthPressed), for: .touchUpInside)
         getTinderPlusView.addSubview(choose6Month)
-        setChoosingButtons(sender: choose12Month, backgroundColor: .lightGray, titleColor: .darkGray, title: "12 חודשים")
+        title3 = setAttributedText(number: "12\n", month: "חודשים\n", costs: "33.32 ₪/חודש") as! NSMutableAttributedString
+        setChoosingButtons(sender: choose12Month, backgroundColor: .lightGray, titleColor: .darkGray, title: title3)
         choose12Month.addTarget(self, action: #selector(choose12MonthPressed), for: .touchUpInside)
         getTinderPlusView.addSubview(choose12Month)
         
+        choose6MonthPressed()
+        
         // Choosing option constraints
         let choosingButtonDict = ["one":choose1Month,"six":choose6Month,"twelve":choose12Month,"PC":pageControl] as [String : Any]
+        let third = (screenWidth-40)/3
         getTinderPlusView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[PC]-20-[one(150)]", options: NSLayoutFormatOptions(), metrics: nil, views: choosingButtonDict))
         getTinderPlusView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[PC]-20-[six(150)]", options: NSLayoutFormatOptions(), metrics: nil, views: choosingButtonDict))
         getTinderPlusView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[PC]-20-[twelve(150)]", options: NSLayoutFormatOptions(), metrics: nil, views: choosingButtonDict))
-        getTinderPlusView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[one(93.33)]-0-[six(93.34)]-0-[twelve(93.33)]|", options: NSLayoutFormatOptions(), metrics: nil, views: choosingButtonDict))
+        getTinderPlusView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[one(\(third))]-0-[six(\(third))]-0-[twelve(\(third))]|", options: NSLayoutFormatOptions(), metrics: nil, views: choosingButtonDict))
  
         // set buying button
         let buyingButton = UIButton()
@@ -132,22 +143,29 @@ class GetTinderPlus : UIViewController, UIScrollViewDelegate, UIPageViewControll
         buyingButton.setTitle("המשך", for: .normal)
         buyingButton.setTitleColor(UIColor.white, for: .normal)
         buyingButton.contentHorizontalAlignment = .center
-        buyingButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        buyingButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         buyingButton.layer.cornerRadius = 15
         buyingButton.addTarget(self, action: #selector(buyingButtonPressed), for: .touchUpInside)
         getTinderPlusView.addSubview(buyingButton)
         getTinderPlusView.addConstraint(NSLayoutConstraint.init(item: buyingButton, attribute: .centerX, relatedBy: .equal, toItem: getTinderPlusView, attribute: .centerX, multiplier: 1, constant: 0))
-        getTinderPlusView.addConstraint(NSLayoutConstraint.init(item: buyingButton, attribute: .top, relatedBy: .equal, toItem: TPlusScrollView, attribute: .bottom, multiplier: 1, constant: 220))
-        getTinderPlusView.addConstraint(NSLayoutConstraint.init(item: buyingButton, attribute: .width, relatedBy: .equal, toItem: getTinderPlusView, attribute: .width, multiplier: 0.5, constant: 0))
-        getTinderPlusView.addConstraint(NSLayoutConstraint.init(item: buyingButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 30))
+        getTinderPlusView.addConstraint(NSLayoutConstraint.init(item: buyingButton, attribute: .top, relatedBy: .equal, toItem: TPlusScrollView, attribute: .bottom, multiplier: 1, constant: 240))
+        getTinderPlusView.addConstraint(NSLayoutConstraint.init(item: buyingButton, attribute: .width, relatedBy: .equal, toItem: getTinderPlusView, attribute: .width, multiplier: 0.67, constant: 0))
+        getTinderPlusView.addConstraint(NSLayoutConstraint.init(item: buyingButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40))
         
-        // Back button
-        let backButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        backButton.backgroundColor = .blue
-        backButton.layer.cornerRadius = 20
-        backButton.setTitle("Back", for: .normal)
-        backButton.addTarget(self, action: #selector(backbuttonPressed), for: .touchUpInside)
-        getTinderPlusView.addSubview(backButton)
+        // No thanks button
+        let NoThanksButton = UIButton()
+        NoThanksButton.translatesAutoresizingMaskIntoConstraints = false
+        NoThanksButton.backgroundColor = UIColor.clear
+        NoThanksButton.setTitle("לא, תודה", for: .normal)
+        NoThanksButton.setTitleColor(UIColor.darkGray, for: .normal)
+        NoThanksButton.contentHorizontalAlignment = .center
+        NoThanksButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        NoThanksButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        getTinderPlusView.addSubview(NoThanksButton)
+        getTinderPlusView.addConstraint(NSLayoutConstraint.init(item: NoThanksButton, attribute: .centerX, relatedBy: .equal, toItem: getTinderPlusView, attribute: .centerX, multiplier: 1, constant: 0))
+        getTinderPlusView.addConstraint(NSLayoutConstraint.init(item: NoThanksButton, attribute: .top, relatedBy: .equal, toItem: buyingButton, attribute: .bottom, multiplier: 1, constant: 20))
+        getTinderPlusView.addConstraint(NSLayoutConstraint.init(item: NoThanksButton, attribute: .width, relatedBy: .equal, toItem: buyingButton, attribute: .width, multiplier: 1, constant: 0))
+        getTinderPlusView.addConstraint(NSLayoutConstraint.init(item: NoThanksButton, attribute: .height, relatedBy: .equal, toItem: buyingButton, attribute: .height, multiplier: 1, constant: 0))
     }
     
     func configurePageControl() {
@@ -194,39 +212,108 @@ class GetTinderPlus : UIViewController, UIScrollViewDelegate, UIPageViewControll
     
     func choose1MonthPressed() -> Void {
         print("One month button pressed")
-        setChoosingButtons(sender: choose1Month , backgroundColor: .orange, titleColor: .red, title:"1 חודש")
-        setChoosingButtons(sender: choose6Month, backgroundColor: .lightGray, titleColor: .darkGray, title: "6 חודשים")
-        setChoosingButtons(sender: choose12Month, backgroundColor: .lightGray, titleColor: .darkGray, title: "12 חודשים")
+        setChoosingButtons(sender: choose1Month , backgroundColor: .white, titleColor: .blue, title:title1)
+        setChoosingButtons(sender: choose6Month, backgroundColor: .lightGray, titleColor: .darkGray, title: title2)
+        setChoosingButtons(sender: choose12Month, backgroundColor: .lightGray, titleColor: .darkGray, title: title3)
+        upperLabelView6.removeFromSuperview()
+        upperLabelView12.removeFromSuperview()
     }
     
     func choose6MonthPressed() -> Void {
         print("Six month button pressed")
-        setChoosingButtons(sender: choose1Month , backgroundColor: .lightGray, titleColor: .darkGray, title:"1 חודש")
-        setChoosingButtons(sender: choose6Month, backgroundColor: .orange, titleColor: .red, title: "6 חודשים")
-        setChoosingButtons(sender: choose12Month, backgroundColor: .lightGray, titleColor: .darkGray, title: "12 חודשים")
+        setChoosingButtons(sender: choose1Month , backgroundColor: .lightGray, titleColor: .darkGray, title:title1)
+        setChoosingButtons(sender: choose6Month, backgroundColor: .white, titleColor: .blue, title: title2)
+        setChoosingButtons(sender: choose12Month, backgroundColor: .lightGray, titleColor: .darkGray, title: title3)
+        upperLabelView6.translatesAutoresizingMaskIntoConstraints = false
+        upperLabelView12.removeFromSuperview()
+        upperLabelView6.backgroundColor = .blue
+        upperLabelView6.layer.cornerRadius = 10
+        let upperLabel6 = addUpperLabel(text: "הפופולרי ביותר")
+        upperLabel6.translatesAutoresizingMaskIntoConstraints = false
+        upperLabelView6.addSubview(upperLabel6)
+        var heightConst = NSLayoutConstraint(item: upperLabel6, attribute: .height, relatedBy: .equal, toItem: upperLabelView6, attribute: .height, multiplier: 1, constant: 0)
+        var widthConst = NSLayoutConstraint(item: upperLabel6, attribute: .width, relatedBy: .equal, toItem: upperLabelView6, attribute: .width, multiplier: 1, constant: 0)
+        var centerXConst = NSLayoutConstraint(item: upperLabel6, attribute: .centerX, relatedBy: .equal, toItem: upperLabelView6, attribute: .centerX, multiplier: 1, constant: 0)
+        var centerYConst = NSLayoutConstraint(item: upperLabel6, attribute: .centerY, relatedBy: .equal, toItem: upperLabelView6, attribute: .centerY, multiplier: 1, constant: 0)
+        upperLabelView6.addConstraints([heightConst,widthConst,centerXConst,centerYConst])
+        getTinderPlusView.addSubview(upperLabelView6)
+        heightConst = NSLayoutConstraint(item: upperLabelView6, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)
+        widthConst = NSLayoutConstraint(item: upperLabelView6, attribute: .width, relatedBy: .equal, toItem: choose6Month, attribute: .width, multiplier: 0.8, constant: 0)
+        centerXConst = NSLayoutConstraint(item: upperLabelView6, attribute: .centerX, relatedBy: .equal, toItem: choose6Month, attribute: .centerX, multiplier: 1, constant: 0)
+        centerYConst = NSLayoutConstraint(item: upperLabelView6, attribute: .centerY, relatedBy: .equal, toItem: choose6Month, attribute: .top, multiplier: 1, constant: 0)
+    getTinderPlusView.addConstraints([heightConst,widthConst,centerXConst,centerYConst])
     }
     
     func choose12MonthPressed() -> Void {
         print("Twelve month button pressed")
-        setChoosingButtons(sender: choose1Month , backgroundColor: UIColor.lightGray, titleColor: UIColor.darkGray, title:"1 חודש")
-        setChoosingButtons(sender: choose6Month, backgroundColor: .lightGray, titleColor: .darkGray, title: "6 חודשים")
-        setChoosingButtons(sender: choose12Month, backgroundColor: .orange, titleColor: .red, title: "12 חודשים")
+        setChoosingButtons(sender: choose1Month , backgroundColor: UIColor.lightGray, titleColor: UIColor.darkGray, title:title1)
+        setChoosingButtons(sender: choose6Month, backgroundColor: .lightGray, titleColor: .darkGray, title: title2)
+        setChoosingButtons(sender: choose12Month, backgroundColor: .white, titleColor: .blue, title: title3)
+        upperLabelView12.translatesAutoresizingMaskIntoConstraints = false
+        upperLabelView6.removeFromSuperview()
+        upperLabelView12.backgroundColor = .blue
+        upperLabelView12.layer.cornerRadius = 10
+        let upperLabel12 = addUpperLabel(text: "המשתלם ביותר")
+        upperLabel12.translatesAutoresizingMaskIntoConstraints = false
+        upperLabelView12.addSubview(upperLabel12)
+        var heightConst = NSLayoutConstraint(item: upperLabel12, attribute: .height, relatedBy: .equal, toItem: upperLabelView12, attribute: .height, multiplier: 1, constant: 0)
+        var widthConst = NSLayoutConstraint(item: upperLabel12, attribute: .width, relatedBy: .equal, toItem: upperLabelView12, attribute: .width, multiplier: 1, constant: 0)
+        var centerXConst = NSLayoutConstraint(item: upperLabel12, attribute: .centerX, relatedBy: .equal, toItem: upperLabelView12, attribute: .centerX, multiplier: 1, constant: 0)
+        var centerYConst = NSLayoutConstraint(item: upperLabel12, attribute: .centerY, relatedBy: .equal, toItem: upperLabelView12, attribute: .centerY, multiplier: 1, constant: 0)
+        upperLabelView12.addConstraints([heightConst,widthConst,centerXConst,centerYConst])
+        getTinderPlusView.addSubview(upperLabelView12)
+        heightConst = NSLayoutConstraint(item: upperLabelView12, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 20)
+        widthConst = NSLayoutConstraint(item: upperLabelView12, attribute: .width, relatedBy: .equal, toItem: choose12Month, attribute: .width, multiplier: 0.8, constant: 0)
+        centerXConst = NSLayoutConstraint(item: upperLabelView12, attribute: .centerX, relatedBy: .equal, toItem: choose12Month, attribute: .centerX, multiplier: 1, constant: 0)
+        centerYConst = NSLayoutConstraint(item: upperLabelView12, attribute: .centerY, relatedBy: .equal, toItem: choose12Month, attribute: .top, multiplier: 1, constant: 0)
+        getTinderPlusView.addConstraints([heightConst,widthConst,centerXConst,centerYConst])
     }
     
-    func setChoosingButtons(sender: UIButton, backgroundColor: UIColor, titleColor: UIColor, title:String) -> Void {
+    func setChoosingButtons(sender: UIButton, backgroundColor: UIColor, titleColor: UIColor, title:NSAttributedString) -> Void {
         sender.translatesAutoresizingMaskIntoConstraints = false
-        sender.setTitle(title, for: .normal)
+        sender.setAttributedTitle(title, for: .normal)
         sender.backgroundColor = backgroundColor
         sender.setTitleColor(titleColor, for: .normal)
         sender.contentHorizontalAlignment = .center
         sender.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         sender.layer.borderColor = titleColor.cgColor
         sender.layer.borderWidth = 2
+        sender.titleLabel?.textAlignment = .center
+        sender.titleLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
     }
     
-    func backbuttonPressed() -> Void {
-        print("Back button pressed")
-        let scrollVC = MainScrollView()
-        present(scrollVC, animated: false, completion: nil)
+    func backButtonPressed() -> Void {
+        print("Get Tplus - Back button pressed")
+        self.view.removeFromSuperview()
     }
+    
+    func setAttributedText(number:String,month:String,costs:String) -> NSAttributedString {
+        let numberText  = number
+        let attr1 = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 28)]
+        let attributedString = NSMutableAttributedString(string:numberText, attributes:attr1)
+        let monthText = month
+        let attr2 = [NSFontAttributeName : UIFont.systemFont(ofSize: 20)]
+        let monthString = NSMutableAttributedString(string:monthText, attributes:attr2)
+        let blancText = "\n"
+        let blancAttr = [NSFontAttributeName : UIFont.systemFont(ofSize: 8)]
+        let blancString = NSMutableAttributedString(string:blancText, attributes:blancAttr)
+        let costsText = costs
+        let attr3 = [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 14)]
+        let costsString = NSMutableAttributedString(string:costsText, attributes:attr3)
+        attributedString.append(monthString)
+        attributedString.append(blancString)
+        attributedString.append(costsString)
+        return attributedString
+    }
+    
+    func addUpperLabel(text:String) -> UILabel {
+        let upperTextLabel = UILabel()
+        upperTextLabel.backgroundColor = .clear
+        upperTextLabel.textAlignment = .center
+        upperTextLabel.textColor = .white
+        upperTextLabel.font = UIFont.systemFont(ofSize: 12)
+        upperTextLabel.text = text
+        return upperTextLabel
+    }
+    
 }

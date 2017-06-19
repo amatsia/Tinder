@@ -10,8 +10,8 @@ import UIKit
 
 class PrivacyPolicy: UIViewController, UIScrollViewDelegate, UINavigationBarDelegate { 
     
-    let scrollView = UIScrollView() // Create the scrollView
-    let contentView = UIView() // Create the contentView
+    let scrollView = UIScrollView() 
+    let contentView = UIView()
     let screenSize: CGRect = UIScreen.main.bounds
     
     
@@ -57,26 +57,27 @@ class PrivacyPolicy: UIViewController, UIScrollViewDelegate, UINavigationBarDele
         textLabel2.sizeToFit()
         self.contentView.addSubview(textLabel2)
         
-        // Back button - need to check how it works on Iphone!!
-        let backButton = UIButton(frame: CGRect(x: (screenSize.width/2)-25, y: 40, width: 50, height: 50))
-        backButton.backgroundColor = UIColor.blue
-        backButton.setTitleColor(UIColor.white, for: .normal)
-        backButton.setTitle("Back",for: .normal)
-        backButton.layer.cornerRadius = 25
-        backButton.addTarget(self, action: #selector(self.backButtonPressed), for: .touchUpInside)
-        self.contentView.addSubview(backButton)
-        
-        // TextLabel and Back button Constraints
-        let subViewsDict = ["textLabel1":textLabel1,"textLabel2":textLabel2,
-                         "backButton":backButton]
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-40-[backButton]-20-[textLabel1]-[textLabel2]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics:nil, views:subViewsDict))
+        // TextLabels Constraints
+        let subViewsDict = ["textLabel1":textLabel1,"textLabel2":textLabel2]
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-100-[textLabel1]-[textLabel2]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics:nil, views:subViewsDict))
         self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[textLabel1]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics:nil, views:subViewsDict))
         self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-10-[textLabel2]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics:nil, views:subViewsDict))
-        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[backButton]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics:nil, views:subViewsDict))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: screenSize.width, height: 65))
+        contentView.addSubview(navBar)
+        navBar.barTintColor = .white
+        let navItem = UINavigationItem(title: "מדיניות שמירה על פרטיות")
+        navBar.setItems([navItem], animated: false)
+        let barButton = UIBarButtonItem(title: "סיום", style: .plain, target: self, action: #selector(backButtonPressed))
+        barButton.tintColor = .red
+        navItem.leftBarButtonItem = barButton
     }
     
     func backButtonPressed() -> Void {
-        print("Back button pressed")
+        print("Privacy - Back button pressed")
         let mainVC = ScrollViewController()
         present(mainVC, animated: false, completion: nil)
     }
